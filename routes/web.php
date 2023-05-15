@@ -22,6 +22,6 @@ Route::get('/posts', function(){
     return view('posts', ['posts' => Post::all()->sortByDesc('updated_at')]);
 });
 
-Route::get('/posts/{slug}', function($id){
-    return view('post', ['post' => Post::findOrFail($id)]);
+Route::get('/posts/{post:slug}', function(Post $post){
+    return view('post', ['post' => $post]);
 });

@@ -1,6 +1,6 @@
 <x-layout>
     <article>
-        <h2><a href="/posts/{{$post->id}}">{{$post->title}}</a></h2>
+        <h2><a href="/posts/{{$post->slug}}">{{$post->title}}</a></h2>
         {!! $post->body!!}
     </article>
     <nav>
