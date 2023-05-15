@@ -9,6 +9,9 @@
         <article>
             <h2><a href="/posts/{{$post->slug}}">{{$post->title}}</a></h2>
             <p>{!! $post->excerpt !!}</p>
+            <p>
+                <small>On <a href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a></small>
+            </p>
         </article>
     @endforeach
 </x-layout>
