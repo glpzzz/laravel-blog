@@ -9,7 +9,7 @@
     @foreach($posts as $post)
         <article>
             <h2><a href="/posts/{{$post->slug}}">{{$post->title}}</a></h2>
-            <p>By <a href="/users/{{$post->author->name}}">{{$post->author->name}}</a> on <a
+            <p>By <a href="/authors/{{$post->author->username}}">{{$post->author->name}}</a> on <a
                     href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a>: {!! $post->excerpt !!}
             </p>
         </article>

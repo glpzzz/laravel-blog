@@ -20,7 +20,7 @@ Route::get('/categories', fn() => view('categories', ['categories' => Category::
 
 Route::get('/categories/{category:slug}', fn(Category $category) => view('category', ['category' => $category]));
 
-Route::get('/users/{user:name}', fn(User $user) => view('user', ['user' => $user]));
+Route::get('/authors/{author:username}', fn(User $author) => view('user', ['user' => $author]));
 
 Route::get('/posts', fn() => view('posts', ['posts' => Post::with(['category', 'author'])->get()->sortByDesc('updated_at')]));
 
