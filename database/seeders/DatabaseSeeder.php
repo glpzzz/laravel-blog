@@ -20,48 +20,7 @@ class DatabaseSeeder extends Seeder
         Category::truncate();
         Post::truncate();
 
-        $user = User::factory()->create();
+        Post::factory(100)->create();
 
-        $personal = Category::create([
-            'name' => 'Personal',
-            'slug' => 'personal',
-        ]);
-
-        $work = Category::create([
-            'name' => 'Work',
-            'slug' => 'work',
-        ]);
-
-        $hobbies = Category::create([
-            'name' => 'Hobbies',
-            'slug' => 'hobbies',
-        ]);
-
-        Post::create([
-            'title' => 'A personal post',
-            'slug' => 'a-personal-post',
-            'excerpt' => 'A personal post excerpt',
-            'body' => '<p>A personal post content</p>',
-            'user_id' => $user->id,
-            'category_id' => $personal->id,
-        ]);
-
-        Post::create([
-            'title' => 'A work post',
-            'slug' => 'a-work-post',
-            'excerpt' => 'A work post excerpt',
-            'body' => '<p>A work post content</p>',
-            'user_id' => $user->id,
-            'category_id' => $work->id,
-        ]);
-
-        Post::create([
-            'title' => 'A hobby post',
-            'slug' => 'a-hobby-post',
-            'excerpt' => 'A hobby post excerpt',
-            'body' => '<p>A hobby post content. </p>',
-            'user_id' => $user->id,
-            'category_id' => $hobbies->id,
-        ]);
     }
 }
