@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Category;
-use App\Models\Post;
+use App\Models\{Category, Post, User};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,15 +19,19 @@ Route::get('/', function () {
 });
 
 Route::get('/categories', function () {
-    return view('categories', ['categories' => Category::all()]);
+    return view('categories', ['categories' => Category::with('posts')->get()]);
 });
 
 Route::get('/categories/{category:slug}', function (Category $category) {
     return view('category', ['category' => $category]);
 });
 
+Route::get('/users/{user:name}', function (User $user) {
+    return view('user', ['user' => $user]);
+});
+
 Route::get('/posts', function () {
-    return view('posts', ['posts' => Post::all()->sortByDesc('updated_at')]);
+    return view('posts', ['posts' => Post::with('category')->get()->sortByDesc('updated_at')]);
 });
 
 Route::get('/posts/{post:slug}', function (Post $post) {

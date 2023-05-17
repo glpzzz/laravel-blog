@@ -1,6 +1,9 @@
 <x-layout>
     <article>
-        <h2><a href="/posts/{{$post->slug}}">{{$post->title}}</a></h2>
+        <header>
+            <h2><a href="/posts/{{$post->slug}}">{{$post->title}}</a></h2>
+            <p>By <a href="/users/{{$post->user->name}}">{{$post->user->name}}</a> on <a href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a></p>
+        </header>
         {!! $post->body!!}
     </article>
     <hr>
