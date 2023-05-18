@@ -16,12 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => view('welcome'));
 
-Route::get('/categories', fn() => view('categories', ['categories' => Category::with('posts')->get()]));
-
-Route::get('/categories/{category:slug}', fn(Category $category) => view('category', ['category' => $category]));
+Route::get('/categories/{category:slug}', fn(Category $category) => view('posts', [
+    'category' => $category,
+    'posts' => $category->posts,
+    'categories' => Category::all(),
+]));
 
 Route::get('/authors/{author:username}', fn(User $author) => view('user', ['user' => $author]));
 
-Route::get('/posts', fn() => view('posts', ['posts' => Post::with(['category', 'author'])->get()->sortByDesc('updated_at')]));
+Route::get('/posts', fn() => view('posts', [
+    'posts' => Post::with(['category', 'author'])->get()->sortByDesc('updated_at'),
+    'categories' => Category::all(),
+]));
 
 Route::get('/posts/{post:slug}', fn(Post $post) => view('post', ['post' => $post]));

@@ -10,6 +10,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $with = ['category', 'author'];
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);

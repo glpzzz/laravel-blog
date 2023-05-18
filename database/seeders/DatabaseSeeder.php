@@ -20,7 +20,33 @@ class DatabaseSeeder extends Seeder
         Category::truncate();
         Post::truncate();
 
-        Post::factory(100)->create();
+        $personal = Category::factory()->create([
+            'name' => 'Personal',
+            'slug' => 'personal',
+        ]);
+
+        Post::factory(10)->create([
+            'category_id' => $personal->id,
+        ]);
+
+        $work = Category::factory()->create([
+            'name' => 'Work',
+            'slug' => 'work',
+        ]);
+
+        Post::factory(10)->create([
+            'category_id' => $work->id,
+        ]);
+
+        $hobbies = Category::factory()->create([
+            'name' => 'Hobbies',
+            'slug' => 'hobbies',
+        ]);
+
+        Post::factory(10)->create([
+            'category_id' => $hobbies->id,
+        ]);
+
 
     }
 }
