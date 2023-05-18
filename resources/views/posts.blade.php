@@ -20,7 +20,8 @@
                         style="display: none">
                         <x-dropdown-item href="/posts">All</x-dropdown-item>
                         @foreach($categories as $c)
-                            <x-dropdown-item href="/categories/{{ $c->slug }}" :active="isset($category) && $category->is($c)">
+                            <x-dropdown-item href="/categories/{{ $c->slug }}"
+                                             :active="isset($category) && $category->is($c)">
                                 {{$c->name}}
                             </x-dropdown-item>
                         @endforeach
@@ -32,7 +33,7 @@
             <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
                 <form method="GET" action="#">
                     <input type="text" name="search" placeholder="Find something"
-                           class="bg-transparent placeholder-black font-semibold text-sm">
+                           class="bg-transparent placeholder-black font-semibold text-sm" value="{{ request('search') }}">
                 </form>
             </div>
         </div>

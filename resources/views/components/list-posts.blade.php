@@ -9,4 +9,6 @@
             @endforeach
         </div>
     @endif
+@else
+    <p class="text-center">No posts yet. Please, come back later.</p>
 @endif

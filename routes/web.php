@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\{Category, Post, User};
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +25,6 @@ Route::get('/categories/{category:slug}', fn(Category $category) => view('posts'
 
 Route::get('/authors/{author:username}', fn(User $author) => view('user', ['user' => $author]));
 
-Route::get('/posts', fn() => view('posts', [
-    'posts' => Post::with(['category', 'author'])->get()->sortByDesc('updated_at'),
-    'categories' => Category::all(),
-]));
+Route::get('/posts', [PostController::class, 'index']);
 
-Route::get('/posts/{post:slug}', fn(Post $post) => view('post', ['post' => $post]));
+Route::get('/posts/{post:slug}', [PostController::class, 'show']);
