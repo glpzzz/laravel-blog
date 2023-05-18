@@ -10,15 +10,14 @@
             <div class="flex items-center lg:justify-center text-sm mt-4">
                 <img src="/images/lary-avatar.svg" alt="Lary avatar">
                 <div class="ml-3 text-left">
-                    <h5 class="font-bold">{{ $post->author->name }}</h5>
-                    <h6>Mascot at Laracasts</h6>
+                    <a href="/?author={{ $post->author->username }}" class="font-bold">{{ $post->author->name }}</a>
                 </div>
             </div>
         </div>
 
         <div class="col-span-8">
             <div class="hidden lg:flex justify-between mb-6">
-                <a href="/posts"
+                <a href="/"
                    class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
                     <svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
                         <g fill="none" fill-rule="evenodd">

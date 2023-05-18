@@ -25,14 +25,19 @@ class Post extends Model
 
     /**
      * @param Builder $query
-     * @param string|null $param
-     * @throws \Exception
+     * @param array $params
      */
-    public function scopeFilter(Builder $query, ?string $param)
+    public function scopeFilter(Builder $query, array $params)
     {
-        $query->when($param ?? null, fn($query, $param) => $query
-            ->where('title', 'like', "%$param%")
-            ->orWhere('body', 'like', "%$param%")
-        );
+        $query->when($params['search'] ?? false, fn($query, $param) =>
+            $query->where(fn($query) =>
+            $query
+                ->where('title', 'like', "%$param%")
+                ->orWhere('body', 'like', "%$param%")
+        ));
+
+        $query->when($params['category'] ?? false, fn($query, $param) => $query->whereHas('category', fn($query) => $query->where('slug', $param)));
+
+        $query->when($params['author'] ?? false, fn($query, $param) => $query->whereHas('author', fn($query) => $query->where('username', $param)));
     }
 }
