@@ -29,4 +29,5 @@
         </div>
     </header>
     <x-list-posts :posts="$posts"/>
+    {{ $posts->links() }}
 </x-layout>
